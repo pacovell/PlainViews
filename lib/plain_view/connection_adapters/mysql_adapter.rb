@@ -50,6 +50,9 @@ module PlainView
         begin
 
           row = execute("SHOW CREATE VIEW #{view}", name).each do |row|
+            if row[1].include?("SECURITY INVOKER")  ## Remove DEFINER if the INVOKER security model
+              row[1].gsub!(/DEFINER=\S+\s+/, '')
+            end
             return row[1] #convert_statement(row[1]) if row[0] == view
           end
         rescue ActiveRecord::StatementInvalid => e

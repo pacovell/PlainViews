@@ -1,6 +1,6 @@
 module PlainView
   module Loader
-    SUPPORTED_ADAPTERS = %w( Mysql PostgreSQL SQLServer SQLite )
+    SUPPORTED_ADAPTERS = %w( Jdbc Mysql PostgreSQL SQLServer SQLite )
 
     def self.load_extensions
       SUPPORTED_ADAPTERS.each do |db|
